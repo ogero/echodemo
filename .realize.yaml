@@ -1,0 +1,42 @@
+settings:
+  legacy:
+    force: false
+    interval: 0s
+schema:
+- name: dev
+  path: .
+  commands:
+    install:
+        status: true
+    run:
+        status: true
+    fmt:
+        status: true
+  watcher:
+    paths:
+    - /
+    extensions:
+    - go
+    - ini
+    - json
+    - html
+    - scss
+    - js
+    - png
+    - jpg
+    ignored_paths:
+    - .git
+    - .realize
+    - assets/materialize-src
+    - vendor
+    - vendor.orig
+    - embed
+    - dist
+    scripts:
+    - type: before
+      command: taskkill /im echodemo.exe /F
+    - type: before
+      command: pkilll -9 echodemo
+    - type: before
+      output: true
+      command: mage generate

@@ -1,0 +1,6 @@
+*
+!.gitignore
+!version.go
+!upstart.example.conf
+!webhook.example.json
+!deploy_echodemo.example.sh

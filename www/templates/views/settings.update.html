@@ -1,0 +1,28 @@
+{{define "title"}}{{ call .Tr "settings.update_setting" }} | {{end}}
+{{define "content"}}
+<div class="container">
+    <div class="section">
+        {{ $name := call $.Tr .setting.Name }}
+        <h5>{{ call $.Tr "settings.update_setting_var" $name}}</h5>
+        <div class="row">
+            <form class="col s12 m10 offset-m2" method="post">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="value" name="value" type="text" class="validate" value="{{.setting.Value}}">
+                        <label for="value">{{ call $.Tr "settings.form_value"}}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 ">
+                        <button class="waves-effect waves-light btn"
+                                type="submit">{{ call .Tr "settings.save_setting" }}
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div style="height: 300px;display: block"></div>
+</div>
+{{end}}

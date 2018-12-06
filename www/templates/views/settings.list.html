@@ -1,0 +1,53 @@
+{{define "title"}}{{ call .Tr "settings.settings" }} | {{end}}
+{{define "content"}}
+<div class="container">
+    <div class="section">
+        <h5>{{ call .Tr "settings.settings" }}</h5>
+        <div class="row">
+            <div class="col s12">
+            {{ if .canJobrunner }}
+            {{ $url:= call .reverse "settings.jobrunner" }}
+                <a class="waves-effect waves-light btn right" style="margin-right: 15px"
+                   href="{{$url}}">{{ call .Tr "settings.jobs_status" }}</a>
+            {{ end }}
+            {{ $url:= call .reverse "settings.readlog" }}
+                <a class="waves-effect waves-light btn right" style="margin-right: 15px"
+                   href="{{$url}}">{{ call .Tr "settings.read_log" }}</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="row">
+
+            <table class="responsive-table striped">
+                <thead>
+                <tr>
+                    <th>{{ call .Tr "settings.list_name" }}</th>
+                    <th>{{ call .Tr "settings.list_value" }}</th>
+                    <th>{{ call .Tr "settings.update_date" }}</th>
+                    <th></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {{range .settings}}
+                <tr>
+                    <td>{{ call $.Tr .Name}}</td>
+                    <td>{{.Value}}</td>
+                    <td>{{.UpdatedAt.Format "02-Jan-2006 15:04:05"}}</td>
+                    <td>
+                    {{ if $.canUpdate }}
+                    {{ $url:= call $.reverse "settings.update" .Name }}
+                        <a href="{{$url}}"><i class="material-icons">edit</i></a>
+                    {{end}}
+                    </td>
+                </tr>
+                {{end}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div style="height: 300px;display: block"></div>
+</div>
+{{end}}

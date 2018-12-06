@@ -1,0 +1,81 @@
+{{define "content"}}
+<div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+        <div class="container pink-shadow">
+            <br><br>
+            <h1 class="header center">{{ call .Tr "home.banner_title" }}</h1>
+            <div class="row center">
+                <h5 class="header col s12 light">{{ call .Tr "home.banner_text" }}</h5>
+            </div>
+            <br><br>
+
+        </div>
+    </div>
+    <div class="parallax"><img src="/assets/img/anas-alshanti-169265-unsplash.jpg"></div>
+</div>
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center aval-text"><i class="material-icons">how_to_reg</i></h2>
+                    <h5 class="center">{{ call .Tr "home.user_zone" }}</h5>
+                    <p class="light">{{ call .Tr "home.user_zone_explain" }}</p>
+                    <p class="center hide-on-med-and-up">
+                        {{ $url:= call .reverse "users.list" }}
+                        <a class="waves-effect waves-light btn aval" href="{{$url}}">
+                            {{if .isLoggedUser }}{{ call .Tr "home.user_list_continue_btn" }}{{else}}{{ call .Tr "home.user_list_login_btn" }}{{end}}
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center aval-text"><i class="material-icons">chrome_reader_mode</i></h2>
+                    <h5 class="center">{{ call .Tr "home.privacy_policy_title" }}</h5>
+                    <p class="light">{{ call .Tr "home.privacy_policy_explain" }}</p>
+                    <p class="center hide-on-med-and-up">
+                        {{ $url:= call .reverse "home.privacy-policy" }}
+                        <a class="waves-effect waves-light btn aval" href="{{$url}}">{{ call .Tr "home.privacy_policy_button" }}</a>
+                    </p>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center aval-text"><i class="material-icons">contact_support</i></h2>
+                    <h5 class="center">{{ call .Tr "home.contact_support_title" }}</h5>
+                    <p class="light">{{ call .Tr "home.contact_support_explain" }}</p>
+                    <p class="center hide-on-med-and-up">
+                        <a class="waves-effect waves-light btn aval" href="mailto:geronimox@gmail.com?subject=Support">{{ call .Tr "home.contact_support_button" }}</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row hide-on-small-only">
+            <div class="center col m4">
+                {{ $url:= call .reverse "users.list" }}
+                <a class="waves-effect waves-light btn aval" href="{{$url}}">
+                    {{if .isLoggedUser }}{{ call .Tr "home.user_list_continue_btn" }}{{else}}{{ call .Tr "home.user_list_login_btn" }}{{end}}
+                </a>
+            </div>
+            <div class="center col m4">
+                {{ $url:= call .reverse "home.privacy-policy" }}
+                <a class="waves-effect waves-light btn aval" href="{{$url}}">{{ call .Tr "home.privacy_policy_button" }}</a>
+            </div>
+            <div class="center col m4">
+                <a class="waves-effect waves-light btn aval" href="mailto:geronimox@gmail.com">{{ call .Tr "home.contact_support_button" }}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+        <div class="container light black-text">
+            <div class="row center">
+                <h4 class="header col s12">{{ call .Tr "home.catch_phrase" }}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="parallax"><img src="/assets/img/aleks-dorohovich-26-unsplash.jpg" alt="Unsplashed background img 2"></div>
+</div>
+{{end}}

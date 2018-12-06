@@ -1,0 +1,12 @@
+{{ define "snackbar" }}
+<script>
+    $(function () {
+        var snacks ={{ with $x := index . "flashes" }}{{ call $x }}{{ end }};
+        if (snacks != null) {
+            for (var i = 0; i < snacks.length; i++) {
+                M.toast({html: snacks[i], displayLength: 3000, classes: 'toasted'});
+            }
+        }
+    });
+</script>
+{{ end }}

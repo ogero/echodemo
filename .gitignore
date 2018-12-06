@@ -1,0 +1,6 @@
+vendor/
+embed/
+.idea/
+*.log
+echodemo.ini
+echodemo.db

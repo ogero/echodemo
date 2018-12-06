@@ -1,0 +1,118 @@
+$color-echodemo: #9e2a2f;
+$color-echodemo-light: #cf4a50;
+$secondary-color: $color-echodemo;
+$link-color: $color-echodemo-light;
+$navbar-font-color: #444;
+@import "../materialize-src/sass/materialize";
+
+body {
+}
+
+.echodemo-text {
+    color: $color-echodemo !important;;
+}
+
+.echodemo {
+    background-color: $color-echodemo !important;
+}
+
+nav {
+    background-color: #fff;
+}
+
+ol.privacy-policy {
+    li {
+        font-size: 1.6rem;
+    }
+    h4 {
+        font-size: 1.6rem;
+    }
+    p {
+        font-size: 14px;
+    }
+}
+
+.parallax-container {
+    min-height: 380px;
+    line-height: 0;
+    height: auto;
+    color: white;
+    .section {
+        width: 100%;
+    }
+    .medium {
+        min-height: 310px;
+    }
+    .small {
+        min-height: 250px;
+    }
+    .pink-shadow {
+        h1, h4, h5 {
+            text-shadow: 0 0 4px #ff669c;
+        }
+    }
+
+}
+
+@media only screen and (max-width: 992px) {
+    .parallax-container .section {
+        position: absolute;
+        top: 40%;
+    }
+
+    #index-banner .section {
+        top: 10%;
+    }
+}
+
+@media only screen and (max-width: 860px) {
+    .parallax-container {
+        min-height: 470px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #index-banner .section {
+        top: 0;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .parallax-container h5 {
+        font-size: 1.34rem;
+    }
+}
+
+.modal-content {
+    h4 {
+        font-weight: 200;
+        color: $color-echodemo;
+    }
+}
+
+.material-icons.tooltipped {
+    color: lighten($color-echodemo-light, 10);
+}
+
+.icon-block {
+    padding: 0 15px;
+    .material-icons {
+        font-size: inherit;
+    }
+}
+
+footer.page-footer {
+    margin: 0;
+}
+
+footer.page-footer .value-footer {
+    color: slategray;
+}
+
+footer.page-footer .value-footer a {
+    color: #4c1619;
+}
+
+footer.page-footer img.profile {
+    width: 25px;
+}

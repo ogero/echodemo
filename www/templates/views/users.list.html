@@ -1,0 +1,118 @@
+{{define "title"}}{{ call .Tr "users.users" }} | {{end}}
+{{define "content"}}
+<div class="container">
+    <div class="section">
+        <h5>{{ call .Tr "users.users" }}</h5>
+        <div class="row">
+            <div class="col s12">
+                <a class="modal-trigger waves-effect waves-light btn right" style="margin-right: 10px"
+                   href='#table-filter'>Filter {{if eq "1" .filter}}(YES){{end}}
+                    <i class="material-icons right">filter_list</i></a>
+            {{ if .canCreate }}
+            {{ $url:= call .reverse "users.create" }}
+                <a class="waves-effect waves-light btn right" style="margin-right: 10px"
+                   href="{{$url}}">{{ call .Tr "users.new_user" }}</a>
+            {{ end }}
+            </div>
+        </div>
+    </div>
+
+    <div id="table-filter" class="modal bottom-sheet">
+        <div class="modal-content container">
+            <h4>{{ call .Tr "users.filter_results" }}</h4>
+            <div class="row ">
+                <form id="table-filter-form" class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12 m3">
+                            <input type="text" id="terms" name="terms" value="{{.terms}}">
+                            <label for="terms">{{ call .Tr "users.filter_terms" }}</label>
+                        </div>
+                        <div class="input-field col s12 m3">
+                            <input type="text" id="date_from" name="created_date_from" class="datepicker"
+                                   value="{{.created_date_from}}">
+                            <label for="date_from">{{ call .Tr "users.filter_from" }}</label>
+                        </div>
+                        <div class="input-field col s12 m3">
+                            <input type="text" id="date_to" name="created_date_to" class="datepicker"
+                                   value="{{.created_date_to}}">
+                            <label for="date_to">{{ call .Tr "users.filter_to" }}</label>
+                        </div>
+                        <input type="hidden" name="filter" value="1">
+                        <div class="col s12">
+                            <small>{{ call .Tr "users.filter_hint" }}</small>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer container">
+        {{ $url:= call .reverse "users.list" }}
+            <a href="{{$url}}" class="modal-close waves-effect waves-red btn-flat">Remove Filter</a>
+            <a href="#!" onclick="$('#table-filter-form').submit()" class="modal-close waves-effect waves-red btn-flat">Apply
+                Filter</a>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="row">
+
+            <table class="responsive-table striped">
+                <thead>
+                <tr>
+                    <th>{{ call .Tr "users.list_email" }}</th>
+                    <th>{{ call .Tr "users.list_role" }}</th>
+                    <th>{{ call .Tr "users.list_create_date" }}</th>
+                    <th>{{ call .Tr "users.list_update_date" }}</th>
+                    <th></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {{range .users}}
+                <tr>
+                    <td>{{.Email}}</td>
+                    <td>{{.Role.FriendlyValue}}</td>
+                    <td>{{.CreatedAt.Format "02-Jan-2006 15:04:05"}}</td>
+                    <td>{{.UpdatedAt.Format "02-Jan-2006 15:04:05"}}</td>
+                    <td>
+                    {{ if $.canDelete }}
+                    {{ $url:= call $.reverse "users.delete" .ID }}
+                        <a href="{{$url}}" onclick="return postAndRefresh(this, true)"><i
+                            class="material-icons">delete</i></a>
+                    {{end}}
+                    {{ if $.canUpdate }}
+                    {{ $url:= call $.reverse "users.update" .ID }}
+                        <a href="{{$url}}"><i class="material-icons">edit</i></a>
+                    {{end}}
+                    </td>
+                </tr>
+                {{end}}
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col s12">
+            {{ if .paginator.HasPages }}
+                <ul class="pagination">
+                {{ if .paginator.HasPrev }}
+                    <li><a href="{{ .paginator.PageLinkPrev }}"><i class="material-icons">chevron_left</i></a></li>
+                {{ else }}
+                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                {{ end }}
+                {{ range .paginator.Pages }}
+                    <li {{ if $.paginator.IsActive . }}class="active"{{else}}class="waves-effect"{{end}}><a
+                        href="{{ $.paginator.PageLink . }}">{{.}}</a></li>
+                {{ end }}
+                {{ if .paginator.HasNext }}
+                    <li><a href="{{ .paginator.PageLinkNext }}"><i class="material-icons">chevron_right</i></a></li>
+                {{ else }}
+                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                {{ end }}
+                </ul>
+            {{end}}
+            </div>
+        </div>
+    </div>
+    <div style="height: 300px;display: block"></div>
+</div>
+{{end}}

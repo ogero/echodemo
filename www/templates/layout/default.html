@@ -1,0 +1,76 @@
+{{ define "default-layout" }}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="{{ call .Tr "web_title" }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>{{block "title" .}} {{end}} {{ call .Tr "web_title" }}</title>
+    <link rel="shortcut icon" href="/assets/img/favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link type="text/css" rel="stylesheet" media="screen,projection" href="/assets/css/default.css">
+{{block "head-start-metas" .}} {{end}}
+{{block "head-start-styles" .}} {{end}}
+{{block "head-start-js" .}} {{end}}
+</head>
+<body>
+<ul id="user-dropdown" class="dropdown-content">
+    <a href="#" onclick="document.getElementById('logout-form').submit();">{{call .Tr "menu.logout_button"}}</a>
+</ul>
+<ul id="user-dropdown-mobile" class="dropdown-content">
+    <a href="#" onclick="document.getElementById('logout-form').submit();">{{call .Tr "menu.logout_button"}}</a>
+</ul>
+<nav>
+    <div class="nav-wrapper container">
+    {{$menu:=call .menu}}
+    {{$logoutUrl:=call .reverse "users.logout"}}
+        <form id="logout-form" method="post" action="{{$logoutUrl}}" style="display: none"></form>
+        <a href="/" class="brand-logo">
+            <img height="50px" style="margin-top: 7px" src="/assets/img/pixdart.png"/>
+        </a>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+        {{ if .isLoggedUser }}
+        {{range $menu}}{{ if .Visible }}
+            <li><a href="{{.Url}}">{{.Label}}</a></li>
+        {{ end }}{{end}}
+            <li><a class="dropdown-trigger" href="#!" data-target="user-dropdown"
+                   data-coverTrigger="false">{{$.loggedUser.Email}}<i
+                class="material-icons right">arrow_drop_down</i></a></li>
+        {{ end }}
+        </ul>
+        <ul class="sidenav" id="nav-mobile">
+        {{ if .isLoggedUser }}
+        {{range $menu}}{{ if .Visible }}
+            <li><a href="{{.Url}}">{{.Label}}</a></li>
+        {{ end }}{{end}}
+            <li><a class="dropdown-trigger" href="#!" data-target="user-dropdown-mobile">{{$.loggedUser.Email}}<i
+                class="material-icons right">arrow_drop_down</i></a></li>
+        {{ end }}
+        </ul>
+    </div>
+</nav>
+
+{{template "content" .}}
+
+<footer class="page-footer grey lighten-5">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/materialize.min.js"></script>
+<script type="text/javascript" src="/assets/js/init.js"></script>
+{{block "snackbar" .}} {{end}}
+{{block "body-end-js" .}} {{end}}
+</body>
+</html>
+{{ end }}

@@ -1,0 +1,36 @@
+{
+    "pkg": "embed",
+    "dest": "./embed/",
+    "fmt": true,
+    "clean": true,
+    "spread": true,
+    "lcf": true,
+    "custom": [
+        {
+            "files": [
+                "www/assets"
+            ],
+            "base": "www",
+            "exclude": [
+                "/assets/materialize-src/**",
+                "/assets/css/*.scss",
+                "/assets/css/.gitignore",
+                "/assets/js/.gitignore"
+            ]
+        },
+        {
+            "files": [
+                "www/templates"
+            ],
+            "base": "www"
+        },
+        {
+            "files": [
+                "locale"
+            ],
+            "exclude": [
+                "locale/*.go"
+            ]
+        }
+    ]
+}

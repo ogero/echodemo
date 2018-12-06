@@ -1,0 +1,58 @@
+{{define "title"}}{{ call .Tr "settings.log_entries" }} | {{end}}
+{{define "content"}}
+<div class="container">
+    <div class="section">
+        <h5>{{ call .Tr "settings.log_entries" }}</h5>
+        <div class="row">
+            <div class="col s12">
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="row">
+            <ul class="collapsible">
+            {{range .logs}}
+                <li>
+                    <div class="collapsible-header">
+                        <i class="material-icons">keyboard_arrow_right</i>
+                    {{$t:=index . "time"}}{{$t.Format "02/01/2006 15:04:05"}} - {{index . "msg"}}
+                        <span class="badge" data-badge-caption="">
+                        <span class="new badge teal darken-4" data-badge-caption="">{{index . "entity"}}</span>
+                        <span class="new badge light-blue darken-4" data-badge-caption=""
+                              style="margin-right: 2px;">{{index . "level"}}</span>
+                        </span>
+                    </div>
+                    <div class="collapsible-body">
+                        <pre>{{index . "json"}}</pre>
+                    </div>
+                </li>
+            {{end}}
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col s12">
+            {{ if .paginator.HasPages }}
+                <ul class="pagination">
+                {{ if .paginator.HasPrev }}
+                    <li><a href="{{ .paginator.PageLinkPrev }}"><i class="material-icons">chevron_left</i></a></li>
+                {{ else }}
+                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                {{ end }}
+                {{ range .paginator.Pages }}
+                    <li {{ if $.paginator.IsActive . }}class="active"{{else}}class="waves-effect"{{end}}><a
+                        href="{{ $.paginator.PageLink . }}">{{.}}</a></li>
+                {{ end }}
+                {{ if .paginator.HasNext }}
+                    <li><a href="{{ .paginator.PageLinkNext }}"><i class="material-icons">chevron_right</i></a></li>
+                {{ else }}
+                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                {{ end }}
+                </ul>
+            {{end}}
+            </div>
+        </div>
+    </div>
+    <div style="height: 300px;display: block"></div>
+</div>
+{{end}}

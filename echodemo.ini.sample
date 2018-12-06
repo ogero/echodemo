@@ -1,0 +1,26 @@
+# http server should bind to this address
+HTTPServerListenAddr = ":2332"
+# It is recommended to use an authentication key with 32 or 64 bytes
+SessionAuthKey = "32 or 64 characters............."
+# The encryption key, if set, must be either 16, 24, or 32 bytes to select AES-128, AES-192, or AES-256 modes.
+SessionEncKey = "16, 24 or 32 characters........."
+# Path to json file containing RBAC rules.
+RBACFile = "rbac.json"
+# Log options panic|fatal|error|warn|info|debug
+LogLevel = "warn"
+# Log file. Route to file and file will be created. If path is not writeable by process: "touch /var/log/echodemo.log;chown foo:foo /var/log/echodemo.log"
+LogFile = "/var/log/echodemo.log"
+# Log formatted as JSON
+LogAsJSON = true
+# DB Connection dialect, choose between sqlite3 and mysql
+GormConnDialect = "mysql"
+# DB Connection arguments, read more at http://gorm.io/docs/connecting_to_the_database.html
+GormConnArgs = "user:password@/dbname?charset=utf8&parseTime=True&loc=Local"
+# When true, queries performed by gorm will be logged
+GormDebugQueries = false
+# DB Forced users, password is created using scrypt. You should use at least N,r,p=32768,8,5
+# admin@localhost.com password is 1234
+[[GormMustUsers]]
+    Email = "admin@localhost.com"
+    Password = "32768$8$4$5a48e40139da2406a63f6906e180a9b3$0ad5cd3a76016eb7d73be2b81b09dc3367077d1f30cb3c528c0fc1d5da043bbc"
+    Role = -1

@@ -1,0 +1,22 @@
+{
+    "roles": {
+        "user": [
+            "users.list",
+            "settings.list"
+        ],
+        "administrator": [
+            "users.list",
+            "users.create",
+            "users.update",
+            "users.delete",
+            "settings.list",
+            "settings.update",
+            "settings.jobrunner"
+        ]
+    },
+    "inheritance": {
+        "administrator": [
+            "user"
+        ]
+    }
+}

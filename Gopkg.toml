@@ -1,0 +1,61 @@
+[prune]
+  go-tests = true
+  unused-packages = true
+
+[[constraint]]
+  name = "github.com/BurntSushi/toml"
+  version = "v0.3.0"
+
+[[constraint]]
+  name = "github.com/sirupsen/logrus"
+  version = "v1.0.6"
+
+[[constraint]]
+  name = "github.com/rifflock/lfshook"
+  version = "v2.3"
+
+[[constraint]]
+  name = "github.com/elithrar/simple-scrypt"
+  version = "1.3.0"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/Unknwon/i18n"
+
+[[constraint]]
+  name = "github.com/labstack/echo"
+  version = "^3.3.4"
+
+[[constraint]]
+  name = "github.com/ipfans/echo-session"
+  version = "3.1.1"
+
+[[override]]
+  # package is required and locked to commit because of lack of new version tag causing mixed import references on github.com/ipfans/echo-session.
+  name = "github.com/boj/redistore"
+  revision = "cd5dcc76aeff9ba06b0a924829fe24fd69cdd517"
+
+[[constraint]]
+  name = "github.com/jinzhu/gorm"
+  version = "1.9.1"
+
+[[constraint]]
+  name = "github.com/mikespook/gorbac"
+  version = "2.1.0"
+
+[[constraint]]
+  # package is required for astaxie/beego/utils/pagination
+  name = "github.com/astaxie/beego"
+  version = "1.10.1"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/bamzi/jobrunner"
+
+[[constraint]]
+  name = "github.com/magefile/mage"
+  version = "1.7.1"
+
+[[constraint]]
+  name = "github.com/fgrosse/goldi"
+  version = "1.0.0"

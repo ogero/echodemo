@@ -1,0 +1,91 @@
+[
+    {
+        "id": "echodemo",
+        "command-working-directory": "/root/go/src/bitbucket.org/ogero/echodemo",
+        "execute-command": "/usr/local/bin/deploy_echodemo.sh",
+        "pass-arguments-to-command": [
+            {
+                "source": "string",
+                "name": "--daemon"
+            }
+        ],
+        "include-command-output-in-response": true,
+        "include-command-output-in-response-on-error": true,
+        "trigger-rule": {
+            "or": [
+                {
+                    "match": {
+                        "type": "value",
+                        "value": "--some-misterious-secret-token--",
+                        "parameter": {
+                            "source": "url",
+                            "name": "token"
+                        }
+                    }
+                },
+                {
+                    "and": [
+                        {
+                            "match": {
+                                "type": "value",
+                                "value": "repo:push",
+                                "parameter": {
+                                    "source": "header",
+                                    "name": "X-Event-Key"
+                                }
+                            }
+                        },
+                        {
+                            "match": {
+                                "type": "value",
+                                "value": "tag",
+                                "parameter": {
+                                    "source": "payload",
+                                    "name": "push.changes.0.new.type"
+                                }
+                            }
+                        },
+                        {
+                            "match": {
+                                "type": "regex",
+                                "value": "^v\\d+\\.\\d+\\.\\d+(?:-.+)?$",
+                                "parameter": {
+                                    "source": "payload",
+                                    "name": "push.changes.0.new.name"
+                                }
+                            }
+                        },
+                        {
+                            "or": [
+                                {
+                                    "match": {
+                                        "type": "ip-whitelist",
+                                        "ip-range": "104.192.136.0/21"
+                                    }
+                                },
+                                {
+                                    "match": {
+                                        "type": "ip-whitelist",
+                                        "ip-range": "34.198.203.127/32"
+                                    }
+                                },
+                                {
+                                    "match": {
+                                        "type": "ip-whitelist",
+                                        "ip-range": "34.198.178.64/32"
+                                    }
+                                },
+                                {
+                                    "match": {
+                                        "type": "ip-whitelist",
+                                        "ip-range": "34.198.32.85/32"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]

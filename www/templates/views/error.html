@@ -1,0 +1,25 @@
+{{define "title"}}Error {{.code}} {{end}}
+{{define "content"}}
+<div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+        <div class="container pink-shadow">
+            <br><br>
+            <h1 class="header center white-text">Error {{.code}}</h1>
+            <div class="row center">
+                <h5 class="header col s12 light">
+                {{if eq .code 404}}
+                   {{ call .Tr "error.404" }}
+                {{else}}{{if eq .code 403}}
+                    {{ call .Tr "error.403" }}
+                {{else}}
+                    {{ call .Tr "error.500" }}
+                {{end}}{{end}}
+                </h5>
+            </div>
+            <br><br>
+
+        </div>
+    </div>
+    <div class="parallax"><img src="/assets/img/anas-alshanti-169265-unsplash.jpg" alt="Unsplashed background img 1"></div>
+</div>
+{{end}}

@@ -1,0 +1,40 @@
+{{define "title"}}{{ call .Tr "scheduler.title" }} | {{end}}
+{{define "content"}}
+<div class="container">
+    <div class="section">
+        <h5>{{ call .Tr "scheduler.subtitle" }}</h5>
+        <div class="row right">
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="row">
+            <table class="responsive-table striped">
+                <thead>
+                <tr>
+                    <th>{{ call .Tr "scheduler.list_name" }}</th>
+                    <th>{{ call .Tr "scheduler.list_status" }}</th>
+                    <th>{{ call .Tr "scheduler.list_last_run" }}</th>
+                    <th>{{ call .Tr "scheduler.list_next_run" }}</th>
+                    <th></th>
+                    <th>{{ call .Tr "scheduler.list_latency" }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{range .jobrunner}}
+                <tr>
+                    <td>{{.JobRunner.Name}}</td>
+                    <td>{{if .JobRunner.Status}}{{.JobRunner.Status}}{{else}}IDLE{{end}}</td>
+                    <td>{{if not .Prev.IsZero}}{{.Prev.Format "02/01/2006 15:04:05"}}{{else}}never{{end}}</td>
+                    <td>{{if not .Next.IsZero}}{{.Next.Format "02/01/2006 15:04:05"}}{{else}}unknown{{end}}</td>
+                    <td>{{if not .Next.IsZero}}in {{.Next.Sub $.now}}{{end}}</td>
+                    <td>{{if .JobRunner.Latency}}{{.JobRunner.Latency}}{{else}}unknown{{end}}</td>
+                </tr>
+                {{end}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div style="height: 300px;display: block"></div>
+</div>
+{{end}}
