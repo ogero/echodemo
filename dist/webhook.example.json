@@ -25,6 +25,16 @@
                 },
                 {
                     "and": [
+						{
+							"match": {
+								"type": "value",
+								"value": "--ANOTHER-misterious-secret-token--",
+								"parameter": {
+									"source": "url",
+									"name": "token"
+								}
+							}
+						},
                         {
                             "match": {
                                 "type": "value",
@@ -54,34 +64,6 @@
                                     "name": "push.changes.0.new.name"
                                 }
                             }
-                        },
-                        {
-                            "or": [
-                                {
-                                    "match": {
-                                        "type": "ip-whitelist",
-                                        "ip-range": "104.192.136.0/21"
-                                    }
-                                },
-                                {
-                                    "match": {
-                                        "type": "ip-whitelist",
-                                        "ip-range": "34.198.203.127/32"
-                                    }
-                                },
-                                {
-                                    "match": {
-                                        "type": "ip-whitelist",
-                                        "ip-range": "34.198.178.64/32"
-                                    }
-                                },
-                                {
-                                    "match": {
-                                        "type": "ip-whitelist",
-                                        "ip-range": "34.198.32.85/32"
-                                    }
-                                }
-                            ]
                         }
                     ]
                 }
