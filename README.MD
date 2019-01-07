@@ -24,7 +24,7 @@ Basic demo of ECHO web project with some useful components plugged in for easy d
 - [dep](https://github.com/golang/dep/releases) as a dependency manager. Binary must reside in PATH env var.  
 - [fileb0x](https://github.com/UnnoTed/fileb0x) as a virtual fs file embedding. Binary must reside in PATH env var.  
 - [sassc binaries](https://github.com/eSlider/sassc-binaries/blob/develop/dist/sassc) as sassc preprocessor. Binary must reside in PATH env var.  
-- [realize](https://gorealize.io/) as dev tooling. Binary must reside in PATH env var.  
+- [realize](https://github.com/oxequa/realize) as dev tooling. Binary must reside in PATH env var.  
 - [mage](https://github.com/magefile/mage/releases) as build, dev and deploy tooling. Binary must reside in PATH env var.  
 
 #### Usage  

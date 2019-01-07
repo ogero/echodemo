@@ -32,11 +32,12 @@ schema:
     - vendor.orig
     - embed
     - dist
+    - mage_output_file.go
     scripts:
     - type: before
       command: taskkill /im echodemo.exe /F
     - type: before
-      command: pkilll -9 echodemo
+      command: pkill -9 echodemo
     - type: before
       output: true
       command: mage generate
